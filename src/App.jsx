@@ -12,8 +12,11 @@ import { useState } from "react";
 // -- 전개연산자를 통한 원본 참조형 자료를 완전 복사 후 완전복사된 값을 변경해서 state변경함수 처리
 
 export default function App() {
+	//컴포넌트 함수의 일반 지역변수를 변경하는 것으로는 새로운 JSX를 반환하는 컴포넌트 함수 자체를 재호출 불가
+	//단지 이벤트가 발생할때마다 컴포넌트 안쪽의 핸들러 함수인 plusNum만 재호출 됨
 	console.log("App render");
 	const [Colors, setColors] = useState(["red", "green", "blue"]); // 배열값이 담긴
+	// const [State, State변경함수] = useState(초기값)
 	// let [Num, setNum] = useState(0); // 원시형자료
 
 	const changeColors = () => {
@@ -24,6 +27,8 @@ export default function App() {
 
 		setColors(newColors);
 
+		//state변경함수를 통해서 값을 변경해야지만
+		//리액트는 변경점을 인식해서 컴포넌트를 재호출
 		// setNum(Num + 1);
 	};
 	return (
